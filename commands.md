@@ -76,3 +76,13 @@ All other commands:
   untaint       Remove the 'tainted' state from a resource instance
   version       Show the current Terraform version
   workspace     Workspace management
+
+
+
+
+
+
+Files extension Terraform looks for in current directory
+
+.tf
+.tfvars
