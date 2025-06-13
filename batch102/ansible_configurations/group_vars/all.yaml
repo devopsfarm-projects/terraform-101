@@ -1,0 +1,13 @@
+# vault: {{ lookup 'path_to_vautl_secret' app_role= app_key=}}
+ansible_user: ec2-user
+deploy_env: production
+ansible_ssh_private_key_file: ~/.ssh/id_rsa
+
+open_ports: 80,443 
+location: us-east-1 
+instance_type: t2.micro 
+# owner: devops 
+uptime_days: 120 
+backup_enabled: false
+deploy_env: uat
+service: unknown

@@ -1,0 +1,38 @@
+- name: Install the latest version of softwares
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - nginx
+  become: yes
+
+- name: Make sure a nginx is running
+  ansible.builtin.systemd_service:
+    state: started
+    name: nginx
+    enabled: true
+  become: true
+
+- name: Copy custom index.html to Nginx web root
+  ansible.builtin.template:
+    src: index.html.j2        # Path to your custom HTML file in your Ansible project
+    dest: /usr/share/nginx/html/index.html
+  become: yes
+
+- name: check if website is up
+  ansible.builtin.shell: "curl -s http://localhost | grep -i {{ service_name }}"
+  register: curl_result
+  
+
+- name: check if hostname is from dev environemt
+  ansible.builtin.shell: "hostname -f"
+  registry: hostname
+  fail_when: 'dev' in hostname.stdout_lines
+
+- name: Fail if 'ansible' not found in web page
+  fail:
+    msg: "'ansible' not found in the web page output"
+  when: curl_result.rc != 0
+
+  
+  

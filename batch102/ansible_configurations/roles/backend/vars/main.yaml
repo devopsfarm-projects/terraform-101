@@ -1,0 +1,10 @@
+open_ports: 80,443 
+location: us-east-1 
+instance_type: t2.micro 
+owner: devops 
+uptime_days: 120 
+backup_enabled: false
+deploy_env: uat
+service: unknown
+
+node_version: 22.0.1

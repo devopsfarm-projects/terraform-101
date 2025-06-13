@@ -1,0 +1,11 @@
+- name: Install Node.js
+  ansible.builtin.dnf:
+    name: nodejs=="{{ node_version }}"
+    state: latest
+  become: yes
+  
+- name: Install PostgreSQL
+  ansible.builtin.dnf:
+    name: postgresql-server
+    state: latest
+  become: yes

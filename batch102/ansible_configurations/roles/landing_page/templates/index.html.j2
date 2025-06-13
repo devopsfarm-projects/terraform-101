@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ app_name }}</title>
+</head>
+<body>
+    <h1>{{ service_name  }}. Coming Soon</h1>
+    {{ custom_html | safe  }}
+    <p>Contact {{ owner }} @ {{ phone_number }}</p>
+    <p> Host machine - {{ ansible_hostname }}
+    <p> Last updated at {{ now() }} </p>
+</body>
+</html>
