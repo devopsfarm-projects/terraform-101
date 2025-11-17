@@ -39,6 +39,26 @@ resource "aws_security_group" "main" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  
+  # allow all outgoing connection
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
   tags = {
     Name = "ansible_security_group"
@@ -49,7 +69,7 @@ resource "aws_security_group" "main" {
 resource "aws_instance" "ansible_demo" {
   for_each   = toset(var.ansible_machines)
   ami           = data.aws_ami.ubuntu.id  
-  instance_type = "t2.micro"
+  instance_type = "t3.small"
   security_groups = [aws_security_group.main.name]
   user_data = file("files/userdata.sh")
   tags = {

@@ -1,0 +1,55 @@
+---
+- name: Host a static web page
+  hosts: all
+  gather_facts: yes
+  become: yes
+#   tasks:
+
+# # To deploy the webpage follow below steps
+# # 1. update the server
+# # 2. Install nginx
+# # 3. Create a simple html page
+# # 4. Start and enable nginx service
+# # 5. Check health by crawling the webpage
+#     - name: Update the server
+#       apt:
+#         update_cache: yes
+#       become: yes
+
+#     - name: Install nginx
+#       apt:
+#         name: nginx
+#         state: present
+    
+#     - name: Copy index.html from template
+#       ansible.builtin.template:
+#         src: files/index.html.j2
+#         dest: /var/www/html/index.html
+#     # - name: Create a simple html page
+#     #   copy:
+#     #     dest: /var/www/html/index.html
+#     #     src: files/index.html
+#     #   become: yes
+
+#     - name: Start and enable nginx service
+#       service:
+#         name: nginx
+#         state: started
+#         enabled: yes
+      
+
+#     - name: Check health by crawling the webpage
+#       uri:
+#         url: http://localhost
+#         return_content: yes
+#       register: webpage
+
+#     - name: Display webpage content
+#       debug:
+#         msg: "{{ webpage.content }}"
+
+  roles:
+    - role: geerlingguy.postgresql
+      become: yes
+
+
